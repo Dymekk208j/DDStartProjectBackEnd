@@ -1,0 +1,12 @@
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\bin\Debug\netstandard2.1\AspNetCore.Identity.Dapper.deps.json
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\bin\Debug\netstandard2.1\AspNetCore.Identity.Dapper.dll
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\bin\Debug\netstandard2.1\AspNetCore.Identity.Dapper.pdb
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\bin\Debug\netstandard2.1\AspNetCore.Identity.Dapper.xml
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.csprojAssemblyReference.cache
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.AssemblyInfoInputs.cache
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.AssemblyInfo.cs
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.csproj.CoreCompileInputs.cache
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.sourcelink.json
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.dll
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.xml
+D:\Prywatne\Daarto\src\AspNetCore.Identity.Dapper\obj\Debug\netstandard2.1\AspNetCore.Identity.Dapper.pdb
