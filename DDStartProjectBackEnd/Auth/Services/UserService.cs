@@ -27,13 +27,14 @@ namespace DDStartProjectBackEnd.Auth.Services
 
         public async Task<LoginResponse> Login(LoginRequest request)
         {
-            request.UserName = request.UserName.Trim();
-            request.Email = request.Email.Trim();
+            request.Login = request.Login.Trim();
             request.Password = request.Password.Trim();
 
-            var user = string.IsNullOrEmpty(request.UserName) ?
-                await _userManager.FindByEmailAsync(request.Email)
-                : await _userManager.FindByNameAsync(request.UserName);
+            var user = await _userManager.FindByNameAsync(request.Login);
+
+            if (user == null)
+                user = await _userManager.FindByEmailAsync(request.Login);
+
 
             if (user == null || !await _userManager.CheckPasswordAsync(user, request.Password))
             {
@@ -62,7 +63,7 @@ namespace DDStartProjectBackEnd.Auth.Services
             var response = new LoginResponse()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
-                UserName = request.UserName,
+                Login = request.Login,
                 Id = user.Id
             };
 
@@ -80,9 +81,9 @@ namespace DDStartProjectBackEnd.Auth.Services
 
             try
             {
-                if (string.IsNullOrEmpty(request.Email) 
-                    || string.IsNullOrEmpty(request.EmailConfirm) 
-                    || string.IsNullOrEmpty(request.Password) 
+                if (string.IsNullOrEmpty(request.Email)
+                    || string.IsNullOrEmpty(request.EmailConfirm)
+                    || string.IsNullOrEmpty(request.Password)
                     || string.IsNullOrEmpty(request.PasswordConfirm))
                     throw new RegistrationProblemException("wrong.model");
 
