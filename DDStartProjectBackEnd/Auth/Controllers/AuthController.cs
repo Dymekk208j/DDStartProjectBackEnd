@@ -19,7 +19,7 @@ namespace DDStartProjectBackEnd.Auth.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register(RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             var response = await _userService.Register(request);
 
@@ -32,7 +32,7 @@ namespace DDStartProjectBackEnd.Auth.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login([FromBody]LoginRequest request)
         {
             var loginResult = await _userService.Login(request);
 
@@ -40,6 +40,28 @@ namespace DDStartProjectBackEnd.Auth.Controllers
                 return Unauthorized();
 
             return Ok(loginResult);
+        }
+
+        [HttpGet("IsEmailAvailable")]
+        public async Task<IActionResult> IsEmailAvailable([FromQuery] IsEmailAvailableRequest request)
+        {
+            var response = await _userService.IsEmailAvailable(request);
+
+            if (response == null)
+                return BadRequest();
+
+            return Ok(response);
+        }
+
+        [HttpGet("IsUsernameAvailable")]
+        public async Task<IActionResult> IsUsernameAvailable([FromQuery]IsUsernameAvailableRequest request)
+        {
+            var response = await _userService.IsUsernameAvailable(request);
+
+            if (response == null)
+                return BadRequest();
+
+            return Ok(response);
         }
     }
 }

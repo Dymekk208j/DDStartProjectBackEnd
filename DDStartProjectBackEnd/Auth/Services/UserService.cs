@@ -25,6 +25,22 @@ namespace DDStartProjectBackEnd.Auth.Services
             _jwtSettings = jwtSettings;
         }
 
+        public async Task<IsEmailAvailableResponse> IsEmailAvailable(IsEmailAvailableRequest request)
+        {
+            return new IsEmailAvailableResponse()
+            {
+                IsEmailAvailable = await _userManager.FindByEmailAsync(request.Email) == null
+            };
+        }
+
+        public async Task<IsUsernameAvailableResponse> IsUsernameAvailable(IsUsernameAvailableRequest request)
+        {
+            return new IsUsernameAvailableResponse()
+            {
+                IsUserNameAvailable = await _userManager.FindByNameAsync(request.Username) == null
+            };
+        }
+
         public async Task<LoginResponse> Login(LoginRequest request)
         {
             request.Login = request.Login.Trim();

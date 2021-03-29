@@ -1,6 +1,8 @@
-﻿namespace DDStartProjectBackEnd.Auth.Responses
+﻿using DDStartProjectBackEnd.Common.Dto.Responses;
+
+namespace DDStartProjectBackEnd.Auth.Responses
 {
-    public class LoginResponse
+    public class LoginResponse : BaseResponse
     {
         public string Id { get; set; }
         public string Login { get; set; }

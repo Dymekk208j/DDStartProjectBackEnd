@@ -2,3 +2,7 @@
 /.vs/DDStartProjectBackEnd/DesignTimeBuild/.dtbcache.v2
 /.vs/DDStartProjectBackEnd/v16/.suo
 /.vs/DDStartProjectBackEnd/v16/.suo
+/AspNetCore.Identity.Dapper/bin/
+/AspNetCore.Identity.Dapper/obj/
+/DDStartProjectBackEnd/obj/
+/DDStartProjectBackEnd/bin/

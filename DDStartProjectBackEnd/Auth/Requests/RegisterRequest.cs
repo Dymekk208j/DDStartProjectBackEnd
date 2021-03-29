@@ -1,8 +1,9 @@
-﻿using DDStartProjectBackEnd.Common.Enums;
+﻿using DDStartProjectBackEnd.Common.Dto.Requests;
+using DDStartProjectBackEnd.Common.Enums;
 
 namespace DDStartProjectBackEnd.Auth.Requests
 {
-    public class RegisterRequest
+    public class RegisterRequest : BaseRequest
     {
         public string UserName { get; set; }
         public string Password { get; set; }
