@@ -35,7 +35,7 @@ namespace DDStartProjectBackEnd.Auth.Controllers
         public async Task<IActionResult> Login([FromBody]LoginRequest request)
         {
             var loginResult = await _userService.Login(request);
-
+            loginResult.RememberMe = request.RememberMe;
             if (loginResult == null)
                 return Unauthorized();
 
