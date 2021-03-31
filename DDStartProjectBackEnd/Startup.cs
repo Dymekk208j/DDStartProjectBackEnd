@@ -1,5 +1,4 @@
 using DDStartProjectBackEnd.Auth.Data;
-using DDStartProjectBackEnd.Auth.Data.Tables;
 using DDStartProjectBackEnd.Auth.Models;
 using DDStartProjectBackEnd.Auth.Services;
 using DDStartProjectBackEnd.StartupSettings;
@@ -28,11 +27,18 @@ namespace DDStartProjectBackEnd
         {
             var jwtSettings = JwtSettings.FromConfiguration(Configuration);
 
-            services.AddIdentity<User, ExtendedIdentityRole>()
-                 .AddDapperStores(options =>
-                 {
-                     options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
-                 });
+            services.AddIdentity<User, ApplicationUserRole>()
+        .AddUserStore<CustomUserStore>()
+        .AddRoleStore<CustomRoleStore>()
+        //.AddEmailStore<IUserEmailStore<User>>()
+        .AddDefaultTokenProviders();
+
+            //services.AddIdentity<User, ExtendedIdentityRole>()
+            //     .AddDapperStores(options =>
+            //     {
+            //         options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
+            //         options.AddUsersTable<ExtendedUserTable, ExtendedIdentityUser>();
+            //     });
 
             services.Configure<IdentityOptions>(options =>
             {

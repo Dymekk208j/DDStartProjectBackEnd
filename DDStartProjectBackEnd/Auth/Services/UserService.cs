@@ -35,10 +35,12 @@ namespace DDStartProjectBackEnd.Auth.Services
 
         public async Task<IsUsernameAvailableResponse> IsUsernameAvailable(IsUsernameAvailableRequest request)
         {
-            return new IsUsernameAvailableResponse()
+            var response = new IsUsernameAvailableResponse()
             {
                 IsUserNameAvailable = await _userManager.FindByNameAsync(request.Username) == null
             };
+
+            return response;
         }
 
         public async Task<LoginResponse> Login(LoginRequest request)
@@ -120,8 +122,9 @@ namespace DDStartProjectBackEnd.Auth.Services
                 {
                     UserName = request.UserName,
                     Email = request.Email,
-                    FirstName = request.FirstName,
-                    LastName = request.LastName
+                    Firstname = request.FirstName,
+                    Lastname = request.LastName,
+                    Gender = request.Gender
                 };
 
                 var createAccountResult = await _userManager.CreateAsync(user, request.Password);
@@ -139,7 +142,7 @@ namespace DDStartProjectBackEnd.Auth.Services
                 response.IsSuccess = false;
                 return response;
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 return response;
             }
