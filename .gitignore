@@ -7,3 +7,12 @@
 /DDStartProjectBackEnd/obj/
 /DDStartProjectBackEnd/bin/
 /DDStartProjectBackEnd/bin/*
+/.vs/DDStartProjectBackEnd/config/applicationhost.config
+/DDStartProjectBackEnd/bin/Debug/net5.0/DDStartProjectBackEnd.runtimeconfig.dev.json
+/DDStartProjectBackEnd/obj/DDStartProjectBackEnd.csproj.nuget.dgspec.json
+/DDStartProjectBackEnd/obj/DDStartProjectBackEnd.csproj.nuget.g.props
+/DDStartProjectBackEnd/obj/Debug/net5.0/DDStartProjectBackEnd.assets.cache
+/DDStartProjectBackEnd/obj/Debug/net5.0/DDStartProjectBackEnd.csproj.FileListAbsolute.txt
+/DDStartProjectBackEnd/obj/Debug/net5.0/DDStartProjectBackEnd.genruntimeconfig.cache
+/DDStartProjectBackEnd/obj/project.assets.json
+/DDStartProjectBackEnd/obj/project.nuget.cache
