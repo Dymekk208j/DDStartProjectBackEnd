@@ -1,3 +1,4 @@
+using DbUp;
 using DDStartProjectBackEnd.Auth.Data;
 using DDStartProjectBackEnd.Auth.Models;
 using DDStartProjectBackEnd.Auth.Services;
@@ -10,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Reflection;
 
 namespace DDStartProjectBackEnd
 {
@@ -28,17 +31,10 @@ namespace DDStartProjectBackEnd
             var jwtSettings = JwtSettings.FromConfiguration(Configuration);
 
             services.AddIdentity<User, ApplicationUserRole>()
-        .AddUserStore<CustomUserStore>()
-        .AddRoleStore<CustomRoleStore>()
-        //.AddEmailStore<IUserEmailStore<User>>()
-        .AddDefaultTokenProviders();
+                    .AddUserStore<CustomUserStore>()
+                    .AddRoleStore<CustomRoleStore>()
+                    .AddDefaultTokenProviders();
 
-            //services.AddIdentity<User, ExtendedIdentityRole>()
-            //     .AddDapperStores(options =>
-            //     {
-            //         options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
-            //         options.AddUsersTable<ExtendedUserTable, ExtendedIdentityUser>();
-            //     });
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -59,12 +55,6 @@ namespace DDStartProjectBackEnd
             services.AddSingleton(jwtSettings);
 
             AuthServicesConfiguration.CofigureAuthServices(services, Configuration);
-
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("admin", policy => policy.RequireClaim("can_delete", "true"));
-            //    options.AddPolicy("user", policy => policy.RequireClaim("can_view", "true"));
-            //});
 
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -91,6 +81,18 @@ namespace DDStartProjectBackEnd
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            EnsureDatabase.For.SqlDatabase(connectionString);
+
+            var upgrader =
+                DeployChanges.To
+                    .SqlDatabase(connectionString)
+                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                    .LogToConsole()
+                    .Build();
+
+            var result = upgrader.PerformUpgrade();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
