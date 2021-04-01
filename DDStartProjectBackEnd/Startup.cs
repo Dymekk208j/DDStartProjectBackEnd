@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Linq;
 using System.Reflection;
 
 namespace DDStartProjectBackEnd
@@ -86,8 +87,9 @@ namespace DDStartProjectBackEnd
             var upgrader =
                 DeployChanges.To
                     .SqlDatabase(connectionString)
-                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
-                    .LogToConsole()
+                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), 
+                    (string s) => s.ToUpper().StartsWith("DDStartProjectBackEnd.Scripts.Script".ToUpper()))
+                    .LogToConsole().LogScriptOutput().LogToTrace()
                     .Build();
 
             var result = upgrader.PerformUpgrade();
