@@ -5,6 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Auth\Data\Sql\CustomUserStore\CreateAsync.Sql" />
+    <None Remove="Auth\Data\Sql\CustomUserStore\DeleteAsync.Sql" />
+    <None Remove="Auth\Data\Sql\CustomUserStore\FindByIdAsync.Sql" />
+    <None Remove="Auth\Data\Sql\CustomUserStore\FindByNameAsync.sql" />
+    <None Remove="Auth\Data\Sql\CustomUserStore\UpdateAsync.sql" />
+    <None Remove="Auth\Data\Sql\FindUserByEmail.sql" />
+    <None Remove="Scripts\Script1 - Init database.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Auth\Data\Sql\FindUserByEmail.Sql" />
+    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\DeleteAsync.Sql" />
+    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\CreateAsync.Sql" />
+    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByIdAsync.Sql" />
+    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByEmailAsync.Sql" />
+    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByNameAsync.sql" />
+    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\UpdateAsync.sql" />
+    <EmbeddedResource Include="Scripts\Script1 - Init database.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="DbUp" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
@@ -13,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Auth\Services\Sql\" />
     <Folder Include="Common\Data\" />
   </ItemGroup>
 

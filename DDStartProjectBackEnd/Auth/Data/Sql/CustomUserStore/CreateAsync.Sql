@@ -1,0 +1,41 @@
+﻿INSERT INTO [AspNetUsers]
+(
+	[Id],
+	[UserName],
+	[NormalizedUserName],
+	[Email],
+	[NormalizedEmail],
+	[EmailConfirmed],
+	[PasswordHash],
+	[SecurityStamp],
+	[ConcurrencyStamp],
+	[PhoneNumber],
+	[PhoneNumberConfirmed],
+	[TwoFactorEnabled],
+	[LockoutEnd],
+	[LockoutEnabled],
+	[AccessFailedCount],
+	[Firstname],
+	[Lastname],
+	[Gender]
+)
+VALUES(
+	@Id,
+	@UserName,
+	@NormalizedUserName,
+	@Email,
+	@NormalizedEmail,
+	@EmailConfirmed,
+	@PasswordHash,
+	@SecurityStamp,
+	@ConcurrencyStamp,
+	@PhoneNumber,
+	@PhoneNumberConfirmed,
+	@TwoFactorEnabled,
+	@LockoutEnd,
+	@LockoutEnabled,
+	@AccessFailedCount,
+	@Firstname,
+	@Lastname,
+	@Gender
+)

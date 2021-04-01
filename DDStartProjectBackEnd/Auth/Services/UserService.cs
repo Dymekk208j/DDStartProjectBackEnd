@@ -136,14 +136,10 @@ namespace DDStartProjectBackEnd.Auth.Services
 
                 return response;
             }
-            catch (RegistrationProblemException ex)
+            catch (Exception ex)
             {
                 response.Errors.Add(ex.Message);
                 response.IsSuccess = false;
-                return response;
-            }
-            catch (System.Exception ex)
-            {
                 return response;
             }
         }
