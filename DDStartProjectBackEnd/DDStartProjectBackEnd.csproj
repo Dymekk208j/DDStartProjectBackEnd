@@ -23,7 +23,6 @@
     <None Remove="Auth\Data\Sql\CustomUserStore\UpdateAsync.sql" />
     <None Remove="Auth\Data\Sql\FindUserByEmail.sql" />
     <None Remove="Scripts\Script1 - Init database.sql" />
-    <None Remove="Scripts\Script2 - test.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +34,6 @@
     <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByNameAsync.sql" />
     <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\UpdateAsync.sql" />
     <EmbeddedResource Include="Scripts\Script1 - Init database.sql" />
-    <EmbeddedResource Include="Scripts\Script2 - test.sql" />
   </ItemGroup>
 
   <ItemGroup>

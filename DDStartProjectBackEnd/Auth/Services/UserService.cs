@@ -82,7 +82,8 @@ namespace DDStartProjectBackEnd.Auth.Services
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Login = request.Login,
-                Id = user.Id
+                Id = user.Id,
+                RememberMe = request.RememberMe
             };
 
 
