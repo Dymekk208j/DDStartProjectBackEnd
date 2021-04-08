@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.Auth.Data.Services
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<ApplicationUserIdentity> _userManager;
         private readonly JwtSettings _jwtSettings;
 
-        public UserService(UserManager<User> userManager, JwtSettings jwtSettings)
+        public AuthService(UserManager<ApplicationUserIdentity> userManager, JwtSettings jwtSettings)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings;
@@ -119,7 +119,7 @@ namespace DDStartProjectBackEnd.Auth.Data.Services
 
                 if (isUserNameAvaiable != null || isEmailAvaiable != null) throw new RegistrationProblemException("user.exist");
 
-                var user = new User()
+                var user = new ApplicationUserIdentity()
                 {
                     UserName = request.UserName,
                     Email = request.Email,

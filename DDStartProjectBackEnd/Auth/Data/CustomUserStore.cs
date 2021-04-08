@@ -10,7 +10,7 @@ using IDbConnection = DDStartProjectBackEnd.Common.Helpers.IDbConnection;
 
 namespace DDStartProjectBackEnd.Auth.Data
 {
-    public class CustomUserStore : IUserStore<User>, IUserPasswordStore<User>, IDisposable, IUserEmailStore<User>
+    public class CustomUserStore : IUserStore<ApplicationUserIdentity>, IUserPasswordStore<ApplicationUserIdentity>, IDisposable, IUserEmailStore<ApplicationUserIdentity>
     {
         private readonly IDbConnection _dbConnection;
         private readonly SqlHelper<CustomUserStore> _sqlHelper;
@@ -21,7 +21,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             _sqlHelper = new SqlHelper<CustomUserStore>();
         }
 
-        public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> CreateAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             using var conn = _dbConnection.GetConnection;
             var query = _sqlHelper.GetSql();
@@ -54,7 +54,7 @@ namespace DDStartProjectBackEnd.Auth.Data
                 return IdentityResult.Failed(new IdentityError() { Code = "120", Description = "Cannot Create User!" });
         }
 
-        public async Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> DeleteAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             using var conn = _dbConnection.GetConnection;
             var query = _sqlHelper.GetSql();
@@ -74,7 +74,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             //Dispose();
         }
 
-        public async Task<User> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
+        public async Task<ApplicationUserIdentity> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
         {
             var query = _sqlHelper.GetSql();
 
@@ -83,22 +83,22 @@ namespace DDStartProjectBackEnd.Auth.Data
             param.Add(
                 "@NormalizedEmail", normalizedEmail);
 
-            var user = await conn.QuerySingleOrDefaultAsync<User>(query, param: param, commandType: CommandType.Text);
+            var user = await conn.QuerySingleOrDefaultAsync<ApplicationUserIdentity>(query, param: param, commandType: CommandType.Text);
 
             return user;
         }
 
-        public async Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public async Task<ApplicationUserIdentity> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             using var conn = _dbConnection.GetConnection;
             var query = _sqlHelper.GetSql();
 
             var param = new DynamicParameters();
             param.Add("@Id", userId);
-            return await conn.QueryFirstOrDefaultAsync<User>(query, param: param, commandType: CommandType.Text);
+            return await conn.QueryFirstOrDefaultAsync<ApplicationUserIdentity>(query, param: param, commandType: CommandType.Text);
         }
 
-        public async Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<ApplicationUserIdentity> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
             using var conn = _dbConnection.GetConnection;
             var query = _sqlHelper.GetSql();
@@ -106,66 +106,66 @@ namespace DDStartProjectBackEnd.Auth.Data
             var param = new DynamicParameters();
             param.Add("@normalizedUserName", normalizedUserName);
 
-            return await conn.QueryFirstOrDefaultAsync<User>(query, param: param, commandType: CommandType.Text);
+            return await conn.QueryFirstOrDefaultAsync<ApplicationUserIdentity>(query, param: param, commandType: CommandType.Text);
         }
 
-        public async Task<string> GetEmailAsync(User user, CancellationToken cancellationToken)
+        public async Task<string> GetEmailAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return await Task.Run(() => user.Email);
         }
 
-        public async Task<bool> GetEmailConfirmedAsync(User user, CancellationToken cancellationToken)
+        public async Task<bool> GetEmailConfirmedAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return await Task.Run(() => user.EmailConfirmed);
         }
 
-        public async Task<string> GetNormalizedEmailAsync(User user, CancellationToken cancellationToken)
+        public async Task<string> GetNormalizedEmailAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return await Task.Run(() => user.Email.ToUpper());
         }
 
-        public async Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
+        public async Task<string> GetNormalizedUserNameAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return await Task.Run(() => user.UserName.ToUpper());
         }
 
-        public async Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
+        public async Task<string> GetPasswordHashAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return await Task.Run(() => user.PasswordHash);
         }
 
-        public async Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken)
+        public async Task<string> GetUserIdAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return await Task.Run(() => user.Id.ToString());
         }
 
-        public async Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken)
+        public async Task<string> GetUserNameAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return await Task.Run(() => user.UserName);
         }
 
-        public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
+        public Task<bool> HasPasswordAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
             return Task.FromResult(!string.IsNullOrWhiteSpace(user.PasswordHash));
         }
 
-        public Task SetEmailAsync(User user, string email, CancellationToken cancellationToken)
+        public Task SetEmailAsync(ApplicationUserIdentity user, string email, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
@@ -173,7 +173,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             return Task.FromResult<object>(null);
         }
 
-        public Task SetEmailConfirmedAsync(User user, bool confirmed, CancellationToken cancellationToken)
+        public Task SetEmailConfirmedAsync(ApplicationUserIdentity user, bool confirmed, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
@@ -181,7 +181,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             return Task.FromResult<object>(null);
         }
 
-        public Task SetNormalizedEmailAsync(User user, string normalizedEmail, CancellationToken cancellationToken)
+        public Task SetNormalizedEmailAsync(ApplicationUserIdentity user, string normalizedEmail, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
@@ -189,7 +189,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             return Task.FromResult<object>(null);
         }
 
-        public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
+        public Task SetNormalizedUserNameAsync(ApplicationUserIdentity user, string normalizedName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
@@ -197,7 +197,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             return Task.FromResult<object>(null);
         }
 
-        public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
+        public Task SetPasswordHashAsync(ApplicationUserIdentity user, string passwordHash, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
@@ -205,7 +205,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             return Task.FromResult<object>(null);
         }
 
-        public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
+        public Task SetUserNameAsync(ApplicationUserIdentity user, string userName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (user == null) throw new ArgumentNullException(nameof(user));
@@ -213,7 +213,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             return Task.FromResult<object>(null);
         }
 
-        public async Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateAsync(ApplicationUserIdentity user, CancellationToken cancellationToken)
         {
             using var conn = _dbConnection.GetConnection;
             var query = _sqlHelper.GetSql();

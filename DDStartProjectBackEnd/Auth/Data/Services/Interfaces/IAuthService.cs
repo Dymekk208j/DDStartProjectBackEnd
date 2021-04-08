@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.Auth.Data.Services.Interfaces
 {
-    public interface IUserService
+    public interface IAuthService
     {
         Task<LoginResponse> Login(LoginRequest request);
 

@@ -29,7 +29,7 @@ namespace DDStartProjectBackEnd
         {
             var jwtSettings = JwtSettings.FromConfiguration(Configuration);
 
-            services.AddIdentity<User, ApplicationUserRole>()
+            services.AddIdentity<ApplicationUserIdentity, ApplicationUserRole>()
                     .AddUserStore<CustomUserStore>()
                     .AddRoleStore<CustomRoleStore>()
                     .AddDefaultTokenProviders();

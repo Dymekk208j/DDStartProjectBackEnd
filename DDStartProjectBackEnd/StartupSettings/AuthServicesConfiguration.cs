@@ -10,7 +10,7 @@ namespace DDStartProjectBackEnd.StartupSettings
     {
         public static void CofigureAuthServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IDbConnection, DbConnection>();
         }
     }

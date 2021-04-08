@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DDStartProjectBackEnd.Auth.Models
 {
-    public class User : IdentityUser
+    public class ApplicationUserIdentity : IdentityUser
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
