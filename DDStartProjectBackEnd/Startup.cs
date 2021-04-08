@@ -1,7 +1,7 @@
 using DbUp;
 using DDStartProjectBackEnd.Auth.Data;
+using DDStartProjectBackEnd.Auth.Data.Services;
 using DDStartProjectBackEnd.Auth.Models;
-using DDStartProjectBackEnd.Auth.Services;
 using DDStartProjectBackEnd.StartupSettings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Linq;
 using System.Reflection;
 
 namespace DDStartProjectBackEnd

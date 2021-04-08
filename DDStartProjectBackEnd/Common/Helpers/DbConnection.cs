@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 
-namespace DDStartProjectBackEnd.Auth.Data
+namespace DDStartProjectBackEnd.Common.Helpers
 {
     public class DbConnection : IDbConnection
     {

@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Auth\Services\Sql\**" />
+    <Compile Remove="Auth\Data\Services\Sql\**" />
     <Compile Remove="Common\Data\**" />
-    <Content Remove="Auth\Services\Sql\**" />
+    <Content Remove="Auth\Data\Services\Sql\**" />
     <Content Remove="Common\Data\**" />
-    <EmbeddedResource Remove="Auth\Services\Sql\**" />
+    <EmbeddedResource Remove="Auth\Data\Services\Sql\**" />
     <EmbeddedResource Remove="Common\Data\**" />
-    <None Remove="Auth\Services\Sql\**" />
+    <None Remove="Auth\Data\Services\Sql\**" />
     <None Remove="Common\Data\**" />
   </ItemGroup>
 
@@ -42,6 +42,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AdminPanel\Users\Controllers\" />
+    <Folder Include="AdminPanel\Users\Data\Services\Interfaces\" />
+    <Folder Include="AdminPanel\Users\Data\Sql\" />
+    <Folder Include="AdminPanel\Users\Dto\Responses\" />
+    <Folder Include="AdminPanel\Users\Dto\Requests\" />
+    <Folder Include="AdminPanel\Users\Models\" />
   </ItemGroup>
 
 </Project>

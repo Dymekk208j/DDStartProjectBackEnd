@@ -1,5 +1,5 @@
-﻿using DDStartProjectBackEnd.Auth.Requests;
-using DDStartProjectBackEnd.Auth.Services.Interfaces;
+﻿using DDStartProjectBackEnd.Auth.Data.Services.Interfaces;
+using DDStartProjectBackEnd.Auth.Dto.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

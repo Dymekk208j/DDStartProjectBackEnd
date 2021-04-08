@@ -1,6 +1,6 @@
-﻿using DDStartProjectBackEnd.Auth.Data;
-using DDStartProjectBackEnd.Auth.Services;
-using DDStartProjectBackEnd.Auth.Services.Interfaces;
+﻿using DDStartProjectBackEnd.Auth.Data.Services;
+using DDStartProjectBackEnd.Auth.Data.Services.Interfaces;
+using DDStartProjectBackEnd.Common.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

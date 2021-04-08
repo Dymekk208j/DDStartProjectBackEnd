@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Security.Cryptography;
 
-namespace DDStartProjectBackEnd.Auth.Services
+namespace DDStartProjectBackEnd.Auth.Data.Services
 {
     public class JwtSettings
     {

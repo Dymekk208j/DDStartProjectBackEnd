@@ -1,7 +1,7 @@
 ﻿using DDStartProjectBackEnd.Common.Dto.Requests;
 using DDStartProjectBackEnd.Common.Enums;
 
-namespace DDStartProjectBackEnd.Auth.Requests
+namespace DDStartProjectBackEnd.Auth.Dto.Requests
 {
     public class RegisterRequest : BaseRequest
     {

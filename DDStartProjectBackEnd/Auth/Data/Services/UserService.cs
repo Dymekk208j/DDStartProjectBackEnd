@@ -1,7 +1,7 @@
-﻿using DDStartProjectBackEnd.Auth.Models;
-using DDStartProjectBackEnd.Auth.Requests;
-using DDStartProjectBackEnd.Auth.Responses;
-using DDStartProjectBackEnd.Auth.Services.Interfaces;
+﻿using DDStartProjectBackEnd.Auth.Data.Services.Interfaces;
+using DDStartProjectBackEnd.Auth.Dto.Requests;
+using DDStartProjectBackEnd.Auth.Dto.Responses;
+using DDStartProjectBackEnd.Auth.Models;
 using DDStartProjectBackEnd.Common.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace DDStartProjectBackEnd.Auth.Services
+namespace DDStartProjectBackEnd.Auth.Data.Services
 {
     public class UserService : IUserService
     {

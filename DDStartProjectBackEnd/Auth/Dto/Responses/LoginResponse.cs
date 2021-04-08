@@ -1,6 +1,6 @@
 ﻿using DDStartProjectBackEnd.Common.Dto.Responses;
 
-namespace DDStartProjectBackEnd.Auth.Responses
+namespace DDStartProjectBackEnd.Auth.Dto.Responses
 {
     public class LoginResponse : BaseResponse
     {

@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace DDStartProjectBackEnd.Auth.Data
+namespace DDStartProjectBackEnd.Common.Helpers
 {
     public interface IDbConnection
     {

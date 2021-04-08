@@ -1,8 +1,8 @@
-﻿using DDStartProjectBackEnd.Auth.Requests;
-using DDStartProjectBackEnd.Auth.Responses;
+﻿using DDStartProjectBackEnd.Auth.Dto.Requests;
+using DDStartProjectBackEnd.Auth.Dto.Responses;
 using System.Threading.Tasks;
 
-namespace DDStartProjectBackEnd.Auth.Services.Interfaces
+namespace DDStartProjectBackEnd.Auth.Data.Services.Interfaces
 {
     public interface IUserService
     {
