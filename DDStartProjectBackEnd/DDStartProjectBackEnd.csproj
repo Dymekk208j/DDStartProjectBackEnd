@@ -45,10 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AdminPanel\Users\Controllers\" />
-    <Folder Include="AdminPanel\Users\Data\Repositories\Interfaces\" />
-    <Folder Include="AdminPanel\Users\Data\Services\Interfaces\" />
-    <Folder Include="AdminPanel\Users\Data\Sql\" />
+    <Folder Include="AdminPanel\Users\Data\Sql\UsersRepository\" />
     <Folder Include="AdminPanel\Users\Dto\Responses\" />
     <Folder Include="AdminPanel\Users\Dto\Requests\" />
     <Folder Include="AdminPanel\Users\Models\" />
