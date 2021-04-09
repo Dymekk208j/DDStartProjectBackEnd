@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using MediatR;
 
 namespace DDStartProjectBackEnd
 {
@@ -54,8 +55,8 @@ namespace DDStartProjectBackEnd
             services.AddSingleton(jwtSettings);
 
             AuthServicesConfiguration.CofigureAuthServices(services, Configuration);
-            AdminPanelServicesConfiguration.CofigureAdminPanelServices(services, Configuration);
             AdminPanelRepositoriesConfiguration.CofigureAdminPanelRepositories(services, Configuration);
+            services.AddMediatR(GetType().Assembly);
 
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

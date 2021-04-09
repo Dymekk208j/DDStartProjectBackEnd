@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="AdminPanel\Users\Data\Repositories\Sql\UsersRepository\GetUsersListAsync.Sql" />
     <None Remove="Auth\Data\Sql\CustomUserStore\CreateAsync.Sql" />
     <None Remove="Auth\Data\Sql\CustomUserStore\DeleteAsync.Sql" />
     <None Remove="Auth\Data\Sql\CustomUserStore\FindByIdAsync.Sql" />
@@ -27,6 +28,7 @@
 
   <ItemGroup>
     <Page Include="Auth\Data\Sql\FindUserByEmail.Sql" />
+    <EmbeddedResource Include="AdminPanel\Users\Data\Repositories\Sql\UsersRepository\GetUsersListAsync.Sql" />
     <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\DeleteAsync.Sql" />
     <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\CreateAsync.Sql" />
     <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByIdAsync.Sql" />
@@ -39,16 +41,16 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="DbUp" Version="4.5.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AdminPanel\Users\Data\Sql\UsersRepository\" />
-    <Folder Include="AdminPanel\Users\Dto\Responses\" />
-    <Folder Include="AdminPanel\Users\Dto\Requests\" />
-    <Folder Include="AdminPanel\Users\Models\" />
+    <Folder Include="AdminPanel\Users\Data\Commands\" />
+    <Folder Include="AdminPanel\Users\Controllers\Requests\" />
   </ItemGroup>
 
 </Project>

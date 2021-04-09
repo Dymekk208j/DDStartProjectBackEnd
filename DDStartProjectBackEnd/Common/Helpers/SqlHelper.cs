@@ -36,7 +36,7 @@ namespace DDStartProjectBackEnd.Common.Helpers
 
             path += sqlName;
 
-            var resName = names.First(name => name.ToUpper() == path.ToUpper());
+            var resName = names.FirstOrDefault(name => name.ToUpper() == path.ToUpper());
 
             if (string.IsNullOrEmpty(resName)) throw new FileNotFoundException($"Sql file ({path.ToUpper()}) not found or it is not embedded resource");
 
