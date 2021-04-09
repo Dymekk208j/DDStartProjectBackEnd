@@ -14,6 +14,8 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using MediatR;
 using DDStartProjectBackEnd.Common.Helpers;
+using Microsoft.IdentityModel.Tokens;
+using System;
 
 namespace DDStartProjectBackEnd
 {
@@ -59,9 +61,21 @@ namespace DDStartProjectBackEnd
             AdminPanelRepositoriesConfiguration.CofigureAdminPanelRepositories(services, Configuration);
             services.AddMediatR(GetType().Assembly);
 
-            services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => options.TokenValidationParameters = jwtSettings.TokenValidationParameters);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = jwtSettings.TokenValidationParameters;
+            });
+
+            //services
+            //    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options => options.TokenValidationParameters = jwtSettings.TokenValidationParameters);
 
 
             services.AddCors(options =>
@@ -90,7 +104,7 @@ namespace DDStartProjectBackEnd
             var upgrader =
                 DeployChanges.To
                     .SqlDatabase(connectionString)
-                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), 
+                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(),
                     (string s) => s.ToUpper().StartsWith("DDStartProjectBackEnd.Scripts.Script".ToUpper()))
                     .LogToConsole().LogScriptOutput().LogToTrace().LogTo(new DbUpCustomLogger())
                     .Build();

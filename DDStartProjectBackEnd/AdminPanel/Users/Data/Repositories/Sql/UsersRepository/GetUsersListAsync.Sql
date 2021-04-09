@@ -1,6 +1,10 @@
 ﻿SELECT 
 	[Id],
+	[Email],
+	[EmailConfirmed],
+	[PhoneNumber],
 	[Firstname],
-	[Lastname]
+	[Lastname],
+	[Gender]
 FROM 
 	[AspNetUsers]
