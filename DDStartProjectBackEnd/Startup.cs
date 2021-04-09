@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using MediatR;
+using DDStartProjectBackEnd.Common.Helpers;
 
 namespace DDStartProjectBackEnd
 {
@@ -91,7 +92,7 @@ namespace DDStartProjectBackEnd
                     .SqlDatabase(connectionString)
                     .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), 
                     (string s) => s.ToUpper().StartsWith("DDStartProjectBackEnd.Scripts.Script".ToUpper()))
-                    .LogToConsole().LogScriptOutput().LogToTrace()
+                    .LogToConsole().LogScriptOutput().LogToTrace().LogTo(new DbUpCustomLogger())
                     .Build();
 
             var result = upgrader.PerformUpgrade();
