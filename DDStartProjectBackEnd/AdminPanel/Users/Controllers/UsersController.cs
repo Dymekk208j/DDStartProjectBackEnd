@@ -10,6 +10,7 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Controllers
 {
     [Route("api/AdminPanel/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -24,7 +25,6 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Controllers
         /// </summary>
         /// <returns>List of users.</returns>
         [HttpGet("GetUsersList")]
-        [Authorize]
         public async Task<IEnumerable<User>> GetUsersList()
         {
             return await _mediator.Send(new GetUsersListQuery());
