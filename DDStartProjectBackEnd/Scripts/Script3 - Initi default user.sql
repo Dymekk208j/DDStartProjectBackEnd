@@ -2,7 +2,7 @@
  SELECT *
  FROM 
   [DDStartProject].[dbo].[AspNetUsers] 
- WHERE [Name] = 'Dymek'
+ WHERE [UserName] = 'Dymek'
  )
   BEGIN
 	 INSERT [dbo].[AspNetUsers] 

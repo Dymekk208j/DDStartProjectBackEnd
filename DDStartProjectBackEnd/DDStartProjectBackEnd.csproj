@@ -16,28 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="AdminPanel\Users\Data\Repositories\Sql\UsersRepository\GetUsersListAsync.Sql" />
-    <None Remove="Auth\Data\Sql\CustomUserStore\CreateAsync.Sql" />
-    <None Remove="Auth\Data\Sql\CustomUserStore\DeleteAsync.Sql" />
-    <None Remove="Auth\Data\Sql\CustomUserStore\FindByIdAsync.Sql" />
-    <None Remove="Auth\Data\Sql\CustomUserStore\FindByNameAsync.sql" />
-    <None Remove="Auth\Data\Sql\CustomUserStore\UpdateAsync.sql" />
-    <None Remove="Auth\Data\Sql\FindUserByEmail.sql" />
-    <None Remove="Scripts\Script1 - Init database.sql" />
-    <None Remove="Scripts\Script2 - Init default roles.sql" />
+    <None Remove="**\*.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="Auth\Data\Sql\FindUserByEmail.Sql" />
-    <EmbeddedResource Include="AdminPanel\Users\Data\Repositories\Sql\UsersRepository\GetUsersListAsync.Sql" />
-    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\DeleteAsync.Sql" />
-    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\CreateAsync.Sql" />
-    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByIdAsync.Sql" />
-    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByEmailAsync.Sql" />
-    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\FindByNameAsync.sql" />
-    <EmbeddedResource Include="Auth\Data\Sql\CustomUserStore\UpdateAsync.sql" />
-    <EmbeddedResource Include="Scripts\Script2 - Init default roles.sql" />
-    <EmbeddedResource Include="Scripts\Script1 - Init database.sql" />
+    <EmbeddedResource Include="**\*.sql" />
   </ItemGroup>
 
   <ItemGroup>
