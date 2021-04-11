@@ -33,21 +33,12 @@ namespace DDStartProjectBackEnd.Auth.Data.Services
 
         public static JwtSettings FromConfiguration(IConfiguration configuration)
         {
-            // In real life this would come from configuration
-            var key = new byte[100];
-
             var issuser = configuration["jwt:issuer"] ?? "defaultissuer";
             var auidence = configuration["jwt:auidence"] ?? "defaultauidence";
             var base64Key = configuration["jwt:key"];
 
-            if (!string.IsNullOrEmpty(base64Key))
-            {
-                key = Convert.FromBase64String(base64Key);
-            }
-            else
-            {
-                RandomNumberGenerator.Create().GetBytes(key);
-            }
+            var key = Convert.FromBase64String(base64Key);
+
 
             return new JwtSettings(key, issuser, auidence);
         }
