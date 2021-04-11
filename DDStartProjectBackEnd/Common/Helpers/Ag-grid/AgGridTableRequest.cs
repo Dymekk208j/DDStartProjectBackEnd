@@ -20,7 +20,7 @@ namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid
         public Dictionary<string, MyFilter<DateTime>> DateTimeFilters { get; private set; }
         public Dictionary<string, MyFilterConditional<DateTime>> DateTimeConditionalFilters { get; private set; }
 
-        public AgGridTableRequest(ServerSideGetRowsRequest serverSideGetRowsRequest)
+        public AgGridTableRequest(BasicDataRequest serverSideGetRowsRequest)
         {
             if (serverSideGetRowsRequest == null)
                 throw new ArgumentNullException(nameof(serverSideGetRowsRequest));
@@ -31,7 +31,7 @@ namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid
 
         }
 
-        void FillFiltersProperties(ServerSideGetRowsRequest _serverSideGetRowsRequest)
+        void FillFiltersProperties(BasicDataRequest _serverSideGetRowsRequest)
         {
             foreach (var filter in _serverSideGetRowsRequest.FilterModel)
             {

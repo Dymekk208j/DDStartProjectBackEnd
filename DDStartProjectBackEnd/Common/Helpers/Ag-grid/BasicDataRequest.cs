@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid
 {
-    public class ServerSideGetRowsRequest
+    public class BasicDataRequest
     {
         [JsonPropertyName("startRow")]
         public int StartRow { get; set; }
@@ -12,10 +11,10 @@ namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid
         [JsonPropertyName("endRow")]
         public int EndRow { get; set; }
 
-        [JsonPropertyName("SortModel")]
+        [JsonPropertyName("sortModel")]
         public SortModel[] SortModel { get; set; }
 
-        [JsonPropertyName("FilterModel")]
+        [JsonPropertyName("filterModel")]
         public Dictionary<string, FilterModel> FilterModel { get; set; }
 
     }

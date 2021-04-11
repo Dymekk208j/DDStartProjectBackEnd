@@ -10,6 +10,7 @@ SET
 	[AccessFailedCount] = @AccessFailedCount,
 	[Firstname] = @Firstname,
 	[Lastname] = @Lastname,
-	[Gender] = @Gender 
+	[Gender] = @Gender,
+	[Blocked] = @Blocked
 WHERE
 	[Id] = @Id

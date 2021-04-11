@@ -45,6 +45,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             param.Add("@Firstname", user.Firstname);
             param.Add("@Lastname", user.Lastname);
             param.Add("@Gender", user.Gender);
+            param.Add("@Blocked", user.Blocked);
 
             var result = await conn.ExecuteAsync(query, param: param, commandType: CommandType.Text);
 
@@ -232,6 +233,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             param.Add("@Firstname", user.Firstname);
             param.Add("@Lastname", user.Lastname);
             param.Add("@Gender", user.Gender);
+            param.Add("@Blocked", user.Blocked);
 
             var result = await conn.ExecuteAsync(query, param: param, commandType: CommandType.Text);
 

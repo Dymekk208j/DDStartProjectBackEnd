@@ -17,7 +17,8 @@
 	[AccessFailedCount],
 	[Firstname],
 	[Lastname],
-	[Gender]
+	[Gender],
+	[Blocked]
 )
 VALUES(
 	@Id,
@@ -37,5 +38,6 @@ VALUES(
 	@AccessFailedCount,
 	@Firstname,
 	@Lastname,
-	@Gender
+	@Gender,
+	@Blocked
 )

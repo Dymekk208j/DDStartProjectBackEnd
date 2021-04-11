@@ -73,7 +73,7 @@ namespace DDStartProjectBackEnd.Auth.Data.Services
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
-                expires: request.RememberMe ? null : DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: creds
                 );
 
