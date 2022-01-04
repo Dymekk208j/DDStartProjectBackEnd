@@ -18,3 +18,4 @@
 /DDStartProjectBackEnd/obj/project.nuget.cache
 /DDStartProjectBackEnd/bin/Debug/net5.0/appsettings.json
 /.vs/DDStartProjectBackEnd/v17/*
+/.vs/*

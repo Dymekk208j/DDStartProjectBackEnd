@@ -46,6 +46,7 @@ namespace DDStartProjectBackEnd.Auth.Data
             param.Add("@Lastname", user.Lastname);
             param.Add("@Gender", user.Gender);
             param.Add("@Blocked", user.Blocked);
+            param.Add("@RegistrationDateUTC", DateTime.UtcNow);
 
             var result = await conn.ExecuteAsync(query, param: param, commandType: CommandType.Text);
 

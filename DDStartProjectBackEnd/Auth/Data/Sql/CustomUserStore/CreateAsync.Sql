@@ -18,7 +18,8 @@
 	[Firstname],
 	[Lastname],
 	[Gender],
-	[Blocked]
+	[Blocked],
+	[RegistrationDateUTC]
 )
 VALUES(
 	@Id,
@@ -39,5 +40,6 @@ VALUES(
 	@Firstname,
 	@Lastname,
 	@Gender,
-	@Blocked
+	@Blocked,
+	@RegistrationDateUTC
 )

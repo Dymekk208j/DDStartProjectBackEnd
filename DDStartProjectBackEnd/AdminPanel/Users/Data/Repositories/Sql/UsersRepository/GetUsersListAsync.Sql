@@ -6,6 +6,8 @@
 	[PhoneNumber],
 	[Firstname],
 	[Lastname],
-	[Gender]
+	[Gender],
+	[Blocked]
+	[RegistrationDateUTC]
 FROM 
 	[AspNetUsers]
