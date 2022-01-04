@@ -29,7 +29,7 @@
 		N'Dymek', 
 		N'DYMEK', 
 		N'Damian.Dziura@DDSoftware.pl', 
-		N'DAMIAN.DZIURA@DDSOFTWARE.PL', 
+		N'DAMIAN.DZIURA@DDSOFTWARE.PL', -- Domyślne hasło: Damian13!
 		1, 
 		N'AQAAAAEAACcQAAAAEBkgwl+F4zXHvsUaNlTA8iv/RYNayEavcQgi32SKjoKxbRUovAhhJlrvE/JjRLkvpQ==', 
 		N'9ae46ea2-5d80-4f99-9c58-8e7d5fefb4ca', 

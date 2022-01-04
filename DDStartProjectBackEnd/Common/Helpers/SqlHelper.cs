@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using DDStartProjectBackEnd.Common.Helpers.Ag_grid.Request;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -65,7 +66,31 @@ namespace DDStartProjectBackEnd.Common.Helpers
         public string GetSql(bool nestedInClassNameFolder = true, [CallerMemberName] string callerName = "")
         {
             return GetSql(callerName, nestedInClassNameFolder);
+        }
 
+        public string GetAgGridSelectSql(ServerRowsRequest request, bool nestedInClassNameFolder = true, [CallerMemberName] string callerName = "")
+        {
+            var filters = request.GetFilters();
+            var sorts = request.GetSorts();
+
+            var sql = GetSql(nestedInClassNameFolder, callerName);
+
+            if (string.IsNullOrEmpty(sql))
+                throw new FileNotFoundException("Sql file not exist or it is not embedded resource");
+
+            var result = $"SELECT * FROM ({sql}) as MainSQL ";
+
+            if (!string.IsNullOrEmpty(filters))
+            {
+                result = $"{result} WHERE {filters}";
+            }
+            result += $" ORDER BY ";
+
+            result += string.IsNullOrEmpty(sorts) ? " 1 " : $" {sorts} ";
+
+            result += $"OFFSET @startRow ROWS FETCH NEXT @endRow-@startRow ROWS ONLY";
+
+            return result;
         }
 
     }

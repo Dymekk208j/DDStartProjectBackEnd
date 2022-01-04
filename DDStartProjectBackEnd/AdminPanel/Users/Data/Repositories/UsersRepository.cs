@@ -1,9 +1,10 @@
-﻿using Dapper;
+﻿using AgGridApi.Models.Response;
+using Dapper;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
 using DDStartProjectBackEnd.Common.Helpers;
-using DDStartProjectBackEnd.Common.Helpers.Ag_grid;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
@@ -19,18 +20,21 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
             _dbConnection = dbConnection;
         }
 
-        public async Task<BasicDataResponse<User>> GetUsersListAsync(GetUsersListQuery query)
+        public async Task<ServerRowsResponse<User>> GetUsersListAsync(GetUsersListQuery query)
         {
-            var response = new BasicDataResponse<User>();
+            var response = new ServerRowsResponse<User>();
 
             using var conn = _dbConnection.GetConnection;
-            var sqlQuery = _sqlHelper.GetSql();
+            
+
+            var sqlQuery = _sqlHelper.GetAgGridSelectSql(query.Request);
+
             var parameters = new DynamicParameters();
-            parameters.Add("startRow", query.StartRow);
-            parameters.Add("endRow", query.EndRow);
+            parameters.Add("startRow", query.Request.StartRow);
+            parameters.Add("endRow", query.Request.EndRow);
 
             response.RowData = await conn.QueryAsync<User>(sqlQuery, parameters);
-            response.TotalRows = await conn.QueryFirstAsync<int>(_sqlHelper.GetSql("GetUsersTotals"));
+            response.RowCount = Enumerable.Count(response.RowData);
 
             return response;
         }

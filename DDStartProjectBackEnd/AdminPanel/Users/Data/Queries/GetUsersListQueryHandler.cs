@@ -1,13 +1,13 @@
-﻿using DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces;
+﻿using AgGridApi.Models.Response;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
-using DDStartProjectBackEnd.Common.Helpers.Ag_grid;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Queries
 {
-    public class GetUsersListQueryHandler : IRequestHandler<GetUsersListQuery, BasicDataResponse<User>>
+    public class GetUsersListQueryHandler : IRequestHandler<GetUsersListQuery, ServerRowsResponse<User>>
     {
         private readonly IUsersRepository _usersRepository;
 
@@ -16,7 +16,7 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Queries
             _usersRepository = usersRepository;
         }
 
-        public Task<BasicDataResponse<User>> Handle(GetUsersListQuery query, CancellationToken cancellationToken)
+        public Task<ServerRowsResponse<User>> Handle(GetUsersListQuery query, CancellationToken cancellationToken)
         {
             return _usersRepository.GetUsersListAsync(query);
         }

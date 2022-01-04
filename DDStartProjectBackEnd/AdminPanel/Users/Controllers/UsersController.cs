@@ -1,6 +1,7 @@
-﻿using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries;
+﻿using AgGridApi.Models.Response;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
-using DDStartProjectBackEnd.Common.Helpers.Ag_grid;
+using DDStartProjectBackEnd.Common.Helpers.Ag_grid.Request;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,9 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Controllers
         /// </summary>
         /// <returns>List of users.</returns>
         [HttpPost("GetUsersList")]
-        public async Task<BasicDataResponse<User>> GetUsersList([FromBody] BasicDataRequest request)
+        public async Task<ServerRowsResponse<User>> GetUsersList([FromBody] ServerRowsRequest request)
         {
-            return await _mediator.Send(new GetUsersListQuery(request.StartRow, request.EndRow, request.SortModel, request.FilterModel));
+            return await _mediator.Send(new GetUsersListQuery(request));
         }
     }
 }

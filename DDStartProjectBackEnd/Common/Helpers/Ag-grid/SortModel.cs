@@ -1,13 +1,16 @@
-﻿using System.Text.Json.Serialization;
-
-namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid
+﻿namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid
 {
     public class SortModel
     {
-        [JsonPropertyName("colId")]
-        public string ColumnId { get; set; }
+        public string ColId { set; get; }
+        public string Sort { set; get; }
 
-        [JsonPropertyName("sort")]
-        public string Direction { get; set; }
+        public SortModel() { }
+
+        public SortModel(string colId, string sort)
+        {
+            ColId = colId;
+            Sort = sort;
+        }
     }
 }

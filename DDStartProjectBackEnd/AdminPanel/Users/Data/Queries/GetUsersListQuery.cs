@@ -1,23 +1,17 @@
-﻿using DDStartProjectBackEnd.AdminPanel.Users.Models;
-using DDStartProjectBackEnd.Common.Helpers.Ag_grid;
+﻿using AgGridApi.Models.Response;
+using DDStartProjectBackEnd.AdminPanel.Users.Models;
+using DDStartProjectBackEnd.Common.Helpers.Ag_grid.Request;
 using MediatR;
-using System.Collections.Generic;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Queries
 {
-    public class GetUsersListQuery : IRequest<BasicDataResponse<User>>
+    public class GetUsersListQuery : IRequest<ServerRowsResponse<User>>
     {
-        public int StartRow { get; }
-        public int EndRow { get; }
-        public SortModel[] SortModel { get; }
-        public Dictionary<string, FilterModel> FilterModel { get; }
+        public ServerRowsRequest Request { get; }
 
-        public GetUsersListQuery(int startRow, int endRow, SortModel[] sortModel = null, Dictionary<string, FilterModel> filterModel = null)
+        public GetUsersListQuery(ServerRowsRequest request)
         {
-            StartRow = startRow;
-            EndRow = endRow;
-            SortModel = sortModel ?? System.Array.Empty<SortModel>();
-            FilterModel = filterModel ?? new Dictionary<string, FilterModel>();
+            Request = request;
         }
     }
 }
