@@ -4,7 +4,6 @@ using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
 using DDStartProjectBackEnd.Common.Helpers;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
@@ -34,7 +33,9 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
             parameters.Add("endRow", query.Request.EndRow);
 
             response.RowData = await conn.QueryAsync<User>(sqlQuery, parameters);
-            response.RowCount = Enumerable.Count(response.RowData);
+
+            var sqlTotal = _sqlHelper.GetAgGridTotalRowsCountFromSelectQuerySql("GetUsersListAsync", "Id" , query.Request);
+            response.RowCount = await conn.QueryFirstAsync<int>(sqlTotal);
 
             return response;
         }

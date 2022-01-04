@@ -3,6 +3,7 @@ using DDStartProjectBackEnd.Common.Helpers.Ag_grid.Filter;
 using Newtonsoft.Json;
 using System;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Web;
 
@@ -151,6 +152,16 @@ namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid
                     }
                     break;
                 case FilterConditionType.SET:
+                    if(!conditionFilterModel.Values.Any())
+                        condition.Append($" UPPER([{field}]) LIKE UPPER(' ') ");
+
+                    conditionFilterModel.Values.ForEach(value =>
+                    {
+                        condition.Append($" UPPER([{field}]) LIKE UPPER('{value}') ");
+
+                        if (value != conditionFilterModel.Values.Last())
+                            condition.Append(" OR ");
+                    });
                     break;
                 default: break;
             }

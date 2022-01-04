@@ -1,4 +1,5 @@
 ﻿using DDStartProjectBackEnd.Common.Enums;
+using System;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Models
 {
@@ -13,5 +14,7 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Models
         public string LastName { get; set; }
         public Gender Gender { get; set; }
         public bool Blocked { get; set; }
+        public DateTime RegistrationDateUTC { get; set; }
+        public string Role { get; set; }
     }
 }
