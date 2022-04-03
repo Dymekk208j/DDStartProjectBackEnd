@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Queries
+namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList
 {
     public class GetUsersListQueryHandler : IRequestHandler<GetUsersListQuery, ServerRowsResponse<User>>
     {

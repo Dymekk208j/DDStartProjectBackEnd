@@ -3,7 +3,7 @@ using System;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Models
 {
-    public class UserDetails
+    public class User
     {
         public string Id { get; set; }
         public string UserName { get; set; }
