@@ -1,10 +1,9 @@
 ﻿using AgGridApi.Models.Response;
 using Dapper;
-using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
 using DDStartProjectBackEnd.Common.Helpers;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
@@ -18,6 +17,19 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
         {
             _sqlHelper = new SqlHelper<UsersRepository>();
             _dbConnection = dbConnection;
+        }
+
+        public async Task<UserDetails> GetUserDetailsAsync(GetUserDetailsQuery query)
+        {
+            using var conn = _dbConnection.GetConnection;
+            var sqlQuery = _sqlHelper.GetSql();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("id", query.Id);
+
+            var response = await conn.QueryFirstAsync<UserDetails>(sqlQuery, parameters);
+
+            return response;
         }
 
         public async Task<ServerRowsResponse<User>> GetUsersListAsync(GetUsersListQuery query)
@@ -34,7 +46,9 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
             parameters.Add("endRow", query.Request.EndRow);
 
             response.RowData = await conn.QueryAsync<User>(sqlQuery, parameters);
-            response.RowCount = Enumerable.Count(response.RowData);
+
+            var sqlTotal = _sqlHelper.GetAgGridTotalRowsCountFromSelectQuerySql("GetUsersListAsync", "Id" , query.Request);
+            response.RowCount = await conn.QueryFirstAsync<int>(sqlTotal);
 
             return response;
         }

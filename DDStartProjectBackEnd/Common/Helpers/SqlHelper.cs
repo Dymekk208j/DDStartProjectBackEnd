@@ -93,5 +93,41 @@ namespace DDStartProjectBackEnd.Common.Helpers
             return result;
         }
 
+        public string GetAgGridTotalRowsCountFromSelectQuerySql(string sqlName, string identityColumnName, ServerRowsRequest request)
+        {
+            var filters = request.GetFilters();
+
+            var sql = GetSql(sqlName);
+
+            if (string.IsNullOrEmpty(sql))
+                throw new FileNotFoundException("Sql file not exist or it is not embedded resource");
+
+            var result = $"SELECT COUNT(mainSql.[{identityColumnName}]) FROM ({sql}) as MainSQL ";
+
+            if (!string.IsNullOrEmpty(filters))
+            {
+                result = $"{result} WHERE {filters}";
+            }
+
+            return result;
+        }
+
+        public string GetAgGridTotalRowsCountWithoutJoinsSql(string tableName, string identityColumnName, ServerRowsRequest request)
+        {
+            if (string.IsNullOrEmpty(tableName) || string.IsNullOrEmpty(identityColumnName))
+                throw new InvalidFilterCriteriaException("Table name and identity column name are mandatory");
+
+            var filters = request.GetFilters();
+            var sql = $@"SELECT
+                         COUNT([{identityColumnName}]) as Total
+                        FROM
+                          [{tableName}]";
+
+            if (filters.Any())
+                sql += $" WHERE {filters}";
+
+            return sql;
+        }
+
     }
 }

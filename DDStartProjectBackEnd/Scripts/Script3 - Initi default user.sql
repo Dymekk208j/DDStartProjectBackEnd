@@ -23,7 +23,7 @@
 		 [AccessFailedCount], 
 		 [Firstname], 
 		 [Lastname], 
-		 [Gender]) 
+		 [GenderId]) 
 	 VALUES 
 		(N'7d8a42ae-a459-4758-9b89-10f06a4b4cfb', 
 		N'Dymek', 
@@ -43,9 +43,10 @@
 		N'Damian', 
 		N'Dziura', 
 		1)
-
-
-		INSERT INTO [DDStartProject].[dbo].[AspNetUserRoles] (UserId, RoleId) 
-		VALUES (N'7d8a42ae-a459-4758-9b89-10f06a4b4cfb', N'9EF622BE-00C7-4B1F-B1C7-D2D32B694B0C')
 	 END
+GO
+
+INSERT INTO [DDStartProject].[dbo].[AspNetUserRoles] (UserId, RoleId) 
+VALUES (N'7d8a42ae-a459-4758-9b89-10f06a4b4cfb', N'9EF622BE-00C7-4B1F-B1C7-D2D32B694B0C')
+
 GO

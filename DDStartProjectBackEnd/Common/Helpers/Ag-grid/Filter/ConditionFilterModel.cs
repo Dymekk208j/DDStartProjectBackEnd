@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid.Filter
 {
@@ -17,6 +18,8 @@ namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid.Filter
 
         public string DateTo { get; set; }
 
+        public List<string> Values { get; set; }
+
         public ConditionFilterModel()
         {
             Type = string.Empty;
@@ -25,6 +28,7 @@ namespace DDStartProjectBackEnd.Common.Helpers.Ag_grid.Filter
             FilterType = string.Empty;
             DateFrom = string.Empty;
             DateTo = string.Empty;
+            Values = new List<string>();
         }
     }
 }

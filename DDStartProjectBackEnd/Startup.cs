@@ -88,11 +88,36 @@ namespace DDStartProjectBackEnd
                 });
             });
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddControllers();    
+            services.AddSwaggerGen(setup =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DDStartProjectBackEnd", Version = "v1" });
+                setup.SwaggerDoc("v1", new OpenApiInfo { Title = "DDStartProjectBackEnd", Version = "v1" });
+
+                // Include 'SecurityScheme' to use JWT Authentication
+                var jwtSecurityScheme = new OpenApiSecurityScheme
+                {
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Name = "JWT Authentication",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+
+                setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+                setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    { jwtSecurityScheme, Array.Empty<string>() }
+                });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
