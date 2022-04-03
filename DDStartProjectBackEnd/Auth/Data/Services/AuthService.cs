@@ -60,7 +60,7 @@ namespace DDStartProjectBackEnd.Auth.Data.Services
             }
 
             var claims = new List<Claim>();
-
+            claims.Add(new Claim("guid", user.Id));
             //if (user.IsAdmin)
             //{
             //    claims.Add(new Claim("can_delete", "true"));

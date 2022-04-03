@@ -1,12 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace DDStartProjectBackEnd.StartupSettings
 {
     public static class AdminPanelServicesConfiguration
     {
-        public static void CofigureAdminPanelServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection ConfigureAdminPanelServices(this IServiceCollection services)
         {
+
+            return services;
         }
     }
 }

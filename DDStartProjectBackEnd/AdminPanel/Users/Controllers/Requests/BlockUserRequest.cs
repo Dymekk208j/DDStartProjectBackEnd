@@ -4,5 +4,6 @@
     {
         public string Id { get; set; }
         public string Reason { get; set; }
+        public bool SaveAsTemplate { get; set; }
     }
 }
