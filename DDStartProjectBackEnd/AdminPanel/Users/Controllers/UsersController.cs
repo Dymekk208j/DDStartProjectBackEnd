@@ -1,5 +1,6 @@
 ﻿using AgGridApi.Models.Response;
-using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries;
+using DDStartProjectBackEnd.AdminPanel.Users.Controllers.Requests;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
 using DDStartProjectBackEnd.Common.Helpers.Ag_grid.Request;
 using MediatR;
@@ -30,5 +31,21 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Controllers
         {
             return await _mediator.Send(new GetUsersListQuery(request));
         }
+
+        /// <summary>
+        /// Return user details
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpGet("GetUserDetails")]
+        public async Task<UserDetails> GetUserDetails([FromQuery] GetUserDetailsRequest request)
+        {
+            return await _mediator.Send(new GetUserDetailsQuery(request.Id));
+        }
+
+        //[HttpPost]
+        //public async Task BlockUser ([FromBody] BlockUserRequest request)
+        //{
+        //}
     }
 }
