@@ -23,7 +23,7 @@
 		 [AccessFailedCount], 
 		 [Firstname], 
 		 [Lastname], 
-		 [Gender]) 
+		 [GenderId]) 
 	 VALUES 
 		(N'7d8a42ae-a459-4758-9b89-10f06a4b4cfb', 
 		N'Dymek', 
