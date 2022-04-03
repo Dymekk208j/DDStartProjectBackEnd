@@ -3,13 +3,13 @@
 namespace DDStartProjectBackEnd.Common.Exceptions
 {
     [Serializable]
-    public class RegistrationProblemException : Exception
+    public class RecordNotFoundException : Exception
     {
-        public RegistrationProblemException() : base() { }
-        public RegistrationProblemException(string message) : base(message) { }
-        public RegistrationProblemException(string message, Exception inner) : base(message, inner) { }
+        public RecordNotFoundException() : base() { }
+        public RecordNotFoundException(string message) : base(message) { }
+        public RecordNotFoundException(string message, Exception inner) : base(message, inner) { }
 
-        protected RegistrationProblemException(System.Runtime.Serialization.SerializationInfo info,
+        protected RecordNotFoundException(System.Runtime.Serialization.SerializationInfo info,
             System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }

@@ -57,8 +57,13 @@ namespace DDStartProjectBackEnd
 
             services.AddSingleton(jwtSettings);
 
-            AuthServicesConfiguration.CofigureAuthServices(services, Configuration);
-            AdminPanelRepositoriesConfiguration.CofigureAdminPanelRepositories(services, Configuration);
+            //Service configuration
+            services.ConfigureAuthServices()
+                    .ConfigureCommonServices();
+
+            //Repository configuration
+            services.ConfigureAdminPanelRepositories();
+
             services.AddMediatR(GetType().Assembly);
 
             services.AddAuthentication(x =>

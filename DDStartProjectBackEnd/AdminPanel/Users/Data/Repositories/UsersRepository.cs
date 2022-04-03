@@ -1,9 +1,15 @@
 ﻿using AgGridApi.Models.Response;
 using Dapper;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.AddBlockReasonIfNotExist;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.BlockUserCommand;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
+using DDStartProjectBackEnd.Common.Exceptions;
+using DDStartProjectBackEnd.Common.Extensions;
 using DDStartProjectBackEnd.Common.Helpers;
+using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
@@ -17,6 +23,48 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
         {
             _sqlHelper = new SqlHelper<UsersRepository>();
             _dbConnection = dbConnection;
+        }
+
+        public async Task AddBlockReasonIfNotExistAsync(AddBlockReasonIfNotExistCommand request)
+        {
+            using var conn = _dbConnection.GetConnection;
+            var sqlQuery = _sqlHelper.GetSql();
+
+            var parameters = new DynamicParameters();
+            parameters.AddCreationBaseData(request.UserId);
+            parameters.Add("Name", request.Name);
+
+            try
+            {
+                var affectedRows = await conn.ExecuteAsync(sqlQuery, parameters);
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetBaseException().GetType() == typeof(SqlException))
+                {
+                    int ErrorCode = ((SqlException)ex).Number;
+                    switch (ErrorCode)
+                    {
+                        case 2627:  // Unique constraint error
+                            throw new RecordDuplicationException();
+                    }
+                }
+                throw;
+            }
+        }
+
+        public async Task<bool> BlockUserAsync(BlockUserCommand request)
+        {
+            using var conn = _dbConnection.GetConnection;
+            var sqlQuery = _sqlHelper.GetSql();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("id", request.Id);
+            parameters.Add("reason", request.Reason);
+
+            var affectedRows = await conn.ExecuteAsync(sqlQuery, parameters);
+
+            return affectedRows > 0;
         }
 
         public async Task<UserDetails> GetUserDetailsAsync(GetUserDetailsQuery query)
@@ -37,7 +85,7 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
             var response = new ServerRowsResponse<User>();
 
             using var conn = _dbConnection.GetConnection;
-            
+
 
             var sqlQuery = _sqlHelper.GetAgGridSelectSql(query.Request);
 
@@ -47,7 +95,7 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
 
             response.RowData = await conn.QueryAsync<User>(sqlQuery, parameters);
 
-            var sqlTotal = _sqlHelper.GetAgGridTotalRowsCountFromSelectQuerySql("GetUsersListAsync", "Id" , query.Request);
+            var sqlTotal = _sqlHelper.GetAgGridTotalRowsCountFromSelectQuerySql("GetUsersListAsync", "Id", query.Request);
             response.RowCount = await conn.QueryFirstAsync<int>(sqlTotal);
 
             return response;
