@@ -6,7 +6,7 @@
 	[PhoneNumber],
 	[Firstname],
 	[Lastname],
-	[GenderId],
+	[GenderId] as [Gender],
 	[Blocked],
 	[RegistrationDateUTC],
 	[Role].[Name] as [Role]

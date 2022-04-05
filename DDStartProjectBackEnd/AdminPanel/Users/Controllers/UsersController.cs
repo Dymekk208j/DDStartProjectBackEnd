@@ -2,6 +2,8 @@
 using DDStartProjectBackEnd.AdminPanel.Users.Controllers.Requests;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.AddBlockReasonIfNotExist;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.BlockUserCommand;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetBlockUserReasonList;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUserDetails;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
 using DDStartProjectBackEnd.Common.Exceptions;
@@ -12,6 +14,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Controllers
@@ -84,6 +87,17 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Controllers
                 _logger.Log(ex);
                 return BadRequest();
             }
+        }
+
+        /// <summary>
+        /// Return list of block reasons
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpGet("GetBlockUserReasonList")]
+        public async Task<List<BlockUserReason>> GetBlockUserReasonList()
+        {
+            return await _mediator.Send(new GetBlockUserReasonListQuery());
         }
     }
 }
