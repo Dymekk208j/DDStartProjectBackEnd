@@ -2,6 +2,7 @@
 using Dapper;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.AddBlockReasonIfNotExist;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.BlockUserCommand;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUserDetails;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
@@ -9,6 +10,7 @@ using DDStartProjectBackEnd.Common.Exceptions;
 using DDStartProjectBackEnd.Common.Extensions;
 using DDStartProjectBackEnd.Common.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
@@ -99,6 +101,16 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories
             response.RowCount = await conn.QueryFirstAsync<int>(sqlTotal);
 
             return response;
+        }
+
+        public async Task<List<BlockUserReason>> GetBlockUserReasonListAsync()
+        {
+            using var conn = _dbConnection.GetConnection;
+            var sqlQuery = _sqlHelper.GetSql();
+
+            var sqlResponse = await conn.QueryAsync<BlockUserReason>(sqlQuery);
+
+            return sqlResponse.AsList();
         }
     }
 }

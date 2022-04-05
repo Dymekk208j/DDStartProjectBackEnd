@@ -1,7 +1,7 @@
 ﻿using DDStartProjectBackEnd.AdminPanel.Users.Models;
 using MediatR;
 
-namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList
+namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUserDetails
 {
     public class GetUserDetailsQuery : IRequest<UserDetails>
     {

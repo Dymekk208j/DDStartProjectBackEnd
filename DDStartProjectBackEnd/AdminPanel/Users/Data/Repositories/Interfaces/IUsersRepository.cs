@@ -1,9 +1,10 @@
 ﻿using AgGridApi.Models.Response;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.AddBlockReasonIfNotExist;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Commands.BlockUserCommand;
+using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUserDetails;
 using DDStartProjectBackEnd.AdminPanel.Users.Data.Queries.GetUsersList;
 using DDStartProjectBackEnd.AdminPanel.Users.Models;
-using MediatR;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces
@@ -14,5 +15,6 @@ namespace DDStartProjectBackEnd.AdminPanel.Users.Data.Repositories.Interfaces
         Task<UserDetails> GetUserDetailsAsync(GetUserDetailsQuery query);
         Task<bool> BlockUserAsync(BlockUserCommand request);
         Task AddBlockReasonIfNotExistAsync(AddBlockReasonIfNotExistCommand request);
+        Task<List<BlockUserReason>> GetBlockUserReasonListAsync();
     }
 }
