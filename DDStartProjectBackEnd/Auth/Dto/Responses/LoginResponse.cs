@@ -8,5 +8,6 @@ namespace DDStartProjectBackEnd.Auth.Dto.Responses
         public string Login { get; set; }
         public string Token { get; set; }
         public bool RememberMe { get; set; }
+        public bool IsBlocked { get; set; }
     }
 }

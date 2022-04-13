@@ -83,7 +83,8 @@ namespace DDStartProjectBackEnd.Auth.Data.Services
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Login = request.Login,
                 Id = user.Id,
-                RememberMe = request.RememberMe
+                RememberMe = request.RememberMe,
+                IsBlocked = user.Blocked
             };
 
 

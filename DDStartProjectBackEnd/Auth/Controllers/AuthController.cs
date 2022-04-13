@@ -32,11 +32,14 @@ namespace DDStartProjectBackEnd.Auth.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody]LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var loginResult = await _userService.Login(request);
             if (loginResult == null)
                 return Unauthorized();
+
+            if (loginResult.IsBlocked)
+                return Forbid();
 
             return Ok(loginResult);
         }
@@ -49,11 +52,12 @@ namespace DDStartProjectBackEnd.Auth.Controllers
             if (response == null)
                 return BadRequest();
 
+
             return Ok(response);
         }
 
         [HttpGet("IsUsernameAvailable")]
-        public async Task<IActionResult> IsUsernameAvailable([FromQuery]IsUsernameAvailableRequest request)
+        public async Task<IActionResult> IsUsernameAvailable([FromQuery] IsUsernameAvailableRequest request)
         {
             var response = await _userService.IsUsernameAvailable(request);
 
